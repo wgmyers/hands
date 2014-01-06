@@ -2,8 +2,22 @@
 
 # hands.py
 
-# Print out a chart of poker hands and their % to win against
-# any other hand HU over n iterations (n to be determined)
+#    A pure python poker hand evaluator
+
+#    Copyright (c) 2014 Wayne Myers wgmyers@gmail.com
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 import random
 
@@ -499,8 +513,8 @@ def print_hu_chart():
 
 if __name__ == "__main__":
 
-    #h = ['7d', '2c']
-    #v = ['Qc', '2s']
+    #h = ['Jh', '7c']
+    #v = ['2d', '2s']
     #v = []
 
     #compare_hole_hands(h, v, True)
@@ -510,4 +524,4 @@ if __name__ == "__main__":
     #else:
     #    print "v wins"
 
-    print_hu_chart()
+    #print_hu_chart()
