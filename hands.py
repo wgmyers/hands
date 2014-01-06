@@ -435,7 +435,7 @@ def play_hands(h1, h2):
     # Compare them and return result
     return compare_hands(h1best, h2best)
 
-def compare_hole_hands(hero, vill):
+def compare_hole_hands(hero, vill, verbose):
     """Take two hole hands and see how often one beats the other.
        If vill not given, see how often hero wins against random hand."""
 
@@ -451,20 +451,63 @@ def compare_hole_hands(hero, vill):
 
     percent = (hwon * 100.0) / max
 
-    if len(vill) == 2:
-        print "%s%s beats %s%s %d%% of the time.\n" % (hero[0], hero[1], vill[0], vill[1], percent)
-    else:
-        print "%s%s wins %d%% of the time.\n" % (hero[0], hero[1], percent)
+    if verbose == True:
+        if len(vill) == 2:
+            print "%s%s beats %s%s %d%% of the time.\n" % (hero[0], hero[1], vill[0], vill[1], percent)
+        else:
+            print "%s%s wins %d%% of the time.\n" % (hero[0], hero[1], percent)
+
+    return percent
+
+def get_percent_win(c1, c2, suited):
+
+    suit1 = random.randint(0, 3)
+    suit2 = suit1
+    if suited == False:
+        while suit1 == suit2:
+            suit2 = random.randint(0, 3)
+    
+    hand = [ c1+suits[suit1], c2+suits[suit2] ] 
+
+    #print hand
+
+    p = compare_hole_hands(hand, [], False)
+
+    return p
+
+def print_hu_chart():
+    """Print out chance to win hu table for all hands"""
+
+    import sys
+    sys.stdout.softspace = 0
+
+    print "   ",
+    for v in values:
+        print "|%2s " % v,
+    print "|\n",
+
+    for c1 in values:
+        print "%2s:" % c1,
+        for c2 in values:
+            suited = False
+            if (values.index(c1) < values.index(c2)):
+                suited = True
+            p = get_percent_win(c1, c2, suited)
+          
+            print "| %2d" % p,
+        print "|\n",
 
 if __name__ == "__main__":
 
-    h = ['7d', '2c']
+    #h = ['7d', '2c']
     #v = ['Qc', '2s']
-    v = []
+    #v = []
 
-    compare_hole_hands(h, v)
+    #compare_hole_hands(h, v, True)
 
     #if play_hands(h, v) == True:
     #    print "h wins"
     #else:
     #    print "v wins"
+
+    print_hu_chart()
